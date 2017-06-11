@@ -10,6 +10,7 @@ using ColorDialog = System.Windows.Forms.ColorDialog;
 
 namespace MagicPng
 {
+    /// A color selection button
     class ColorChooser : RectControl
     {
         const int highlightThickness = 3;
@@ -19,13 +20,28 @@ namespace MagicPng
         public delegate void UpdateFunction();
         UpdateFunction updateFunction = null;
 
+        /// <summary>
+        /// Creates a color chooser from a rectangle with the specified initial color
+        /// </summary>
+        /// <param name="colorRect">The rectangle the user must click to open the chooser</param>
+        /// <param name="initialColor">The initial selected color</param>
         public ColorChooser(Rectangle colorRect, Color initialColor) : base(colorRect, initialColor)
         {
+            // Create the color selection dialog
             colorDialog = new ColorDialog();
             colorDialog.FullOpen = true;
             colorDialog.Color = colorToDrawingColor(initialColor);
+
+            // Store the current color
             selectedColor = initialColor;
         }
+
+        /// <summary>
+        /// Creates a color chooser that calls the specified function when a new color is selected
+        /// </summary>
+        /// <param name="colorRect">The rectangle the user must click to open the chooser</param>
+        /// <param name="initialColor">The initial selected color</param>
+        /// <param name="updateFunction">The function to call when a color is selected</param>
         public ColorChooser(Rectangle colorRect, Color initialColor, UpdateFunction updateFunction) : this(colorRect, initialColor)
         {
             this.updateFunction = updateFunction;
@@ -55,10 +71,18 @@ namespace MagicPng
                 colorDialog.Color = colorToDrawingColor(selectedColor);
             }
         }
+        /// <summary>
+        /// Gets the currently selected color
+        /// </summary>
+        /// <returns>The currently selected color</returns>
         public Color getColor()
         {
             return selectedColor;
         }
+        /// <summary>
+        /// Modifies the currently selected color
+        /// </summary>
+        /// <param name="color">The new selected color</param>
         public void changeColor(Color color)
         {
             setColor(color);

@@ -58,7 +58,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ChooseButton.cs" />
-    <Compile Include="ColorSlider.cs" />
     <Compile Include="ImageTransformer.cs" />
     <Compile Include="RectControl.cs" />
     <Page Include="MainWindow.xaml">

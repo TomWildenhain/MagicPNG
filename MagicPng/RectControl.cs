@@ -8,6 +8,7 @@ using System.Windows.Media;
 
 namespace MagicPng
 {
+    /// Represents a colored rectangle that can be clicked and enlarges on mouseover
     class RectControl
     {
         const int highlightThickness = 3;
@@ -18,6 +19,11 @@ namespace MagicPng
         double originalWidth;
         double originalHeight;
 
+        /// <summary>
+        /// Creates a RectControl from the given Rectangle with the specified Color
+        /// </summary>
+        /// <param name="colorRect">The rectangle the RectControl resizes and colors</param>
+        /// <param name="initialColor">The color of the rectangle</param>
         public RectControl(Rectangle colorRect, Color initialColor)
         {
             this.colorRect = colorRect;
@@ -27,8 +33,10 @@ namespace MagicPng
             unhighlight();
             addHandlers();
         }
+
         private void highlight()
         {
+            // Adding an outline makes the rectangle enlarge
             colorRect.StrokeThickness = highlightThickness;
             colorRect.Margin = new System.Windows.Thickness(0);
             colorRect.Width = originalWidth + highlightThickness * 2;
@@ -37,6 +45,7 @@ namespace MagicPng
         }
         private void unhighlight()
         {
+            // Removing the outline makes the rectangle smaller
             colorRect.StrokeThickness = 0;
             colorRect.Margin = new System.Windows.Thickness(highlightThickness);
             colorRect.Width = originalWidth;
@@ -45,6 +54,7 @@ namespace MagicPng
         }
         virtual protected void setColor(Color newColor)
         {
+            // Change the color of the rectangle
             currentColor = newColor;
             colorRect.Fill = new SolidColorBrush(newColor);
             colorRect.Stroke = new SolidColorBrush(newColor);
@@ -55,6 +65,7 @@ namespace MagicPng
             colorRect.MouseLeave += MouseLeave;
             colorRect.MouseUp += MouseUp;
         }
+        // Overriden by subclasses
         virtual protected void MouseUp(object sender, System.Windows.Input.MouseButtonEventArgs e)
         {
         }

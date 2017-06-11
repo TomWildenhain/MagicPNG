@@ -23,7 +23,6 @@ namespace MagicPng
     public partial class MainWindow : Window
     {
         ColorChooser colorAChooser;
-        ColorSlider colorBChooser;
         ColorChooser colorCChooser;
         ChooseButton imageChooser1;
         ChooseButton imageChooser2;
@@ -36,7 +35,6 @@ namespace MagicPng
         {
             InitializeComponent();
             colorAChooser = new ColorChooser(ColorARect, Colors.White, update);
-            //colorBChooser = new ColorSlider(ColorBRect, Colors.White, Colors.Black, update);
             colorCChooser = new ColorChooser(ColorCRect, Colors.Black, update);
             imageChooser1 = new ChooseButton(ChooseBn1, update);
             imageChooser2 = new ChooseButton(ChooseBn2, update);
